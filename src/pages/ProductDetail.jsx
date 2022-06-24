@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import ShopApi from '../api/ShopApi';
 
 const ProductDetail = () => {
-  const [ProductDetail, setProductDetail] = useState("");
-  const getProductDetail = async()=>{
-    setProductDetail(await ShopApi.getProductSingle())
-  }
-  useEffect(() => {
-    getProductDetail();
-  }, []);
+  const {id}=useParams();
+  const [product,setProduct]=useState(null);
+  const getProductById=useCallback(async()=>{
+    const response=await ShopApi.getProductSingle(id);
+    setProduct(response)
+  },[id])
+
+   useEffect(()=>{
+    getProductById()
+   },[getProductById])
   return (
     <section>
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-4">
-            <img className='img-fluid' src={ProductDetail.image} alt="" />
+      <div className='container'>
+            {product?(
+              <div className='row align-items-center'>
+            <div className="col-lg-6">
+              <img src={product.image} className="img-fluid" alt={product.name}/>
+            </div>
+            <div className="col-lg-6">
+              <h4>{product.name}</h4>
+              <p>{product.description}</p>
+              {product.discount!==0 && !product.discount?(
+              <>
+              <del>{product.price}</del>
+                <p>{product.discount}</p> Azn
+              </>
+              ):<p>{product.price} Azn</p>}
+            </div>
           </div>
-          <div className="col-lg-5">
-            <h1>
-              {ProductDetail.title}
-            </h1>
-            <h5>{ProductDetail.price} $</h5>
-          </div>
-        </div>
+              ):<p>loading...</p>}
       </div>
-      
     </section>
   )
 }

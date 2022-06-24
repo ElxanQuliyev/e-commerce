@@ -9,7 +9,7 @@ const BaseRouter = () => {
     <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/product-detail/:id' element={<ProductDetail/>} />
-        <Route path='/product-show' element ={<ShowProduct/>}/>
+        {/* <Route path='/product-show' element ={<ShowProduct/>}/> */}
     </Routes>
   )
 }
