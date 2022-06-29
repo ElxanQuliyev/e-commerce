@@ -6,14 +6,14 @@ import { changeMode } from '../../redux/action/DarkMode';
 const Header = () => {
     const dispatch=useDispatch();
     const test=useSelector(s=>s.productInfo);
-    console.log(test)
+    const myColor=useSelector(state=>state)
+    
   return (
     <div>
       <h4>Logo</h4>
       <p>{test.salam && test.salam.name}</p>
       <button onClick={()=>dispatch(changeMode("white"))}>White</button>
       <button onClick={()=>dispatch(changeMode("black"))}>Dark</button>
-
     </div>
   )
 }

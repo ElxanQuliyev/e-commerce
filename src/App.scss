@@ -1,37 +1,76 @@
-
-.box{
-    height: 250px;
-    width: 250px;
-    background: red;
+.box {
+  height: 250px;
+  width: 250px;
+  background: red;
 }
 
-.box2{
-    height: 250px;
-    width: 250px;
-    background: orange;
-    position: relative;
-    transition: .4s ease-in-out;
-    left: 0;
-    &.active{
-        left: 200px;
-    }
+.box2 {
+  height: 250px;
+  width: 250px;
+  background: orange;
+  position: relative;
+  transition: 0.4s ease-in-out;
+  left: 0;
+  &.active {
+    left: 200px;
+  }
 }
-.my-modal{
+.my-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 600px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease-in-out;
+  &.modal-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  iframe {
+    width: 100%;
+    height: 500px;
+  }
+}
+
+.myModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  padding: 5rem;
+  background: white;
+  display: none;
+  .modalClose {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 60%;
-    height: 600px;
-    opacity: 0;
-    visibility: hidden;
-    transition: .4s ease-in-out;
-    &.modal-active{
-        opacity: 1;
-        visibility: visible;
-    }
-    iframe{
-        width: 100%;
-        height: 500px;
-    }
+    right: 15px;
+    top: 15px;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.product-modal {
+  width: 60%;
+  background: grey;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5rem;
+  display: none;
+
+  &.active {
+      display: block;
+  }
+
+  .modalClose {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
 }
