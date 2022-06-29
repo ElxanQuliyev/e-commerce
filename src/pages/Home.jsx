@@ -4,6 +4,8 @@ import YouTube from 'react-youtube'
 import ShopApi from '../api/ShopApi'
 import ProductList from '../components/productList/ProductList'
 
+//context api
+//redux
 const Home = () => {
   const [products, setProducts] = useState([]);
   const getHandleProducts = async () => {
