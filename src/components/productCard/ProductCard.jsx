@@ -31,7 +31,7 @@ const handleClose = () => {
               </>
               ):<p>{product.price}</p>}
           </Link> */}
-          <Link to={`#`} onClick={() => handleOpen(product.id)}>
+          <Link to={`/product-detail/${product.id}`}>
             <img
               className="img-fluid"
               style={{ height: "300px", objectFit: "contain" }}
