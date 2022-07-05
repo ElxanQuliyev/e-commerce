@@ -8,7 +8,6 @@ import  "./header.scss";
 const Header = () => {
   const dispatch = useDispatch();
   const {cartItems} =useSelector(state=>state.cart)
-  console.log(cartItems)
   return (
     <header>
       <div className="container">

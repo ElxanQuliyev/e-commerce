@@ -8,12 +8,16 @@ import { getUserInfo } from '../redux/action/userActions';
 const ProductDetail = () => {
   const dispatch =useDispatch()
   const {id}=useParams();
+  const {cartItems} =useSelector(state=>state.cart)
+  const [findItem,setFindItem]=useState(null)
   const [product,setProduct]=useState(null);
-  const [quantity,setQuantity]=useState(1)
   const getProductById=useCallback(async()=>{
     const response=await ShopApi.getProductSingle(id);
     setProduct(response)
-  },[id])
+    setFindItem(cartItems.find(c=>c.id===Number(id)))
+  },[id,cartItems])
+  console.log(findItem)
+
 
    useEffect(()=>{
     getProductById()
@@ -35,9 +39,7 @@ const ProductDetail = () => {
                 <p>{product.discount}</p> Azn
               </>
               ):<p>{product.price} Azn</p>}
-              <input type="number" min={1} value={quantity}
-              onChange={(e)=>setQuantity(Number(e.target.value))}/>
-              <button onClick={()=>dispatch(addToCart(product.id,quantity))} className='btn btn-outline-success'>Add To Cart</button>
+              <button disabled={findItem ?true :false} onClick={()=>dispatch(addToCart(product.id,1))} className={`btn ${findItem?"btn-danger":"btn-outline-success"}`}>{findItem?"Remove From Cart":"Add To Cart"}</button>
             </div>
           </div>
               ):<p>loading...</p>}
